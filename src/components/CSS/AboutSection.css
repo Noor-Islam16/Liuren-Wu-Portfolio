@@ -1,0 +1,58 @@
+.about-container {
+    max-width: 1200px;
+    margin: 5% auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #00525E, #076573, #0F7989);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Fallback for unsupported browsers */
+}
+
+  
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+  }
+  
+  .first-letter {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #00525E;
+    float: left;
+    margin-right: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-title {
+      font-size: 2rem;
+    }
+  
+    .first-letter {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-container {
+      padding: 20px;
+    }
+  
+    .about-title {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+  
+    .first-letter {
+      font-size: 2rem;
+    }
+  }
+  

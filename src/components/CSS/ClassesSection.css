@@ -1,0 +1,69 @@
+.classes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .classes-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00525E;
+  }
+  
+  .classes-list {
+    margin-top: 20px;
+  }
+  
+  .class-item {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .class-header {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #E8F5F5;
+    color: #00525E;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .class-header.active {
+    background: #00525E;
+    color: white;
+  }
+  
+  .class-header .toggle-icon {
+    font-size: 1.5rem;
+  }
+  
+  .class-details {
+    background: white;
+    padding: 15px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .classes-container {
+      padding: 20px;
+    }
+  
+    .classes-title {
+      font-size: 2rem;
+      text-align: center;
+    }
+  
+    .class-header {
+      font-size: 1rem;
+    }
+  }
+  
