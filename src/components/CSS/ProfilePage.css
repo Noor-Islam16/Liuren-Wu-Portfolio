@@ -117,8 +117,12 @@ body {
 
 .article-badge {
     position: absolute;
-    bottom: 10%;
-    left: 45%;
+    bottom: 0px;
+    /* Adjust this value to position the badge below the image */
+    left: 50%;
+    /* Center the badge horizontally */
+    transform: translateX(-50%);
+    /* Center the badge horizontally */
     background: var(--secondary-color);
     color: white;
     border-radius: 10px;
@@ -127,8 +131,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
+    /* Ensure the badge is above the image */
 }
-
 /* Responsive Design */
 @media (max-width: 1024px) {
     .profile-name {
@@ -139,6 +144,11 @@ body {
         width: 300px;
         height: 300px;
     }
+         .article-badge {
+             bottom: -15px;
+             /* Adjust for smaller screens */
+             padding: 10px 15px;
+         }
 }
 
 @media (max-width: 768px) {
@@ -168,13 +178,12 @@ body {
             height: 250px;
         }
     
-        .article-badge {
-            bottom: 0;
-            left: auto;
-            right: 10%;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-        }
+                 .article-badge {
+                     bottom: -10px;
+                     /* Adjust for tablet screens */
+                     padding: 8px 12px;
+                     font-size: 0.9rem;
+                 }
     
         .navigation {
             justify-content: center;
@@ -209,12 +218,12 @@ body {
         padding: 8px 20px;
     }
 
-    .article-badge {
-        padding: 6px 10px;
-        /* Further reduce padding for smaller screens */
-        font-size: 0.8rem;
-        /* Further reduce font size for smaller screens */
-    }
+        .article-badge {
+            bottom: -8px;
+            /* Adjust for mobile screens */
+            padding: 6px 10px;
+            font-size: 0.8rem;
+        }
 }
 
 @media (max-width: 320px) {
@@ -232,10 +241,10 @@ body {
         height: 180px;
     }
 
-    .article-badge {
-        padding: 5px 8px;
-        /* Further reduce padding for very small screens */
-        font-size: 0.7rem;
-        /* Further reduce font size for very small screens */
-    }
+   .article-badge {
+       bottom: -5px;
+       /* Adjust for very small screens */
+       padding: 5px 8px;
+       font-size: 0.7rem;
+   }
 }
