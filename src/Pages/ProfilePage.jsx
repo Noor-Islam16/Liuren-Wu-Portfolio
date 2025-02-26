@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../components/CSS/ProfilePage.css";
 import profileImage from "../assets/pro2.png";
 import Pattern from "../assets/back.png";
+
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("about");
 
@@ -16,7 +17,13 @@ const ProfilePage = () => {
   };
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab.toLowerCase());
+    const tabId = tab.toLowerCase();
+    setActiveTab(tabId);
+
+    const section = document.getElementById(tabId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
@@ -29,7 +36,6 @@ const ProfilePage = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Main profile section */}
       <div className="profile-content">
         <div className="left-nav">
           <div className="nav-links">
@@ -58,7 +64,6 @@ const ProfilePage = () => {
         <div className="profile-info-container">
           <div className="profile-image-container">
             <div className="profile-image">
-              {/* Using public folder approach */}
               <img src={profileImage} alt="Liuren Wu" className="profile-img" />
             </div>
 

@@ -3,7 +3,6 @@ import AboutSection from "./Pages/AboutSection";
 import InsightsSection from "./Pages/InsightsSection";
 import ClassesSection from "./Pages/ClassesSection";
 import Footer from "./Pages/Footer";
-import Profile from "./Pages/Profile";
 
 function App() {
   return (
