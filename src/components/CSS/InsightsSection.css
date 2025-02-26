@@ -1,122 +1,214 @@
 .insights-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 5% auto;
-    padding:80px 20px;
-    gap: 30px;
-    background-color: #DAEAF03B;
-  }
-  .insights-box {
-flex-direction: row;
-width: 20%;
+  display: flex;
+  max-width: 1200px;
+  margin: 5% auto;
+  padding: 80px 20px;
+  gap: 30px;
+  background-color: #DAEAF03B;
+}
 
-  }
+.insights-box {
+  flex-direction: row;
+  width: 20%;
+}
 
-  .insights-title {
-    font-size: 2.5rem;
-    font-weight: normal;
-    color: #00525E;
-  }
-  
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15% ;
-    gap: 10px;
-  }
-  
-  .sidebar-btn {
-    background: none;
-    border: 2px solid ;
-    border-color: #04486F;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #04486F;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50px;
-    transition: background 0.3s;
-  }
+.insights-title {
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: #00525E;
+}
 
- .working-paper-title {
-  font-weight: 800;
-    font-size: 1.1rem;
-    color: #04486F;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15%;
+  gap: 10px;
+}
 
+.sidebar-btn {
+  background: none;
+  border: 2px solid;
+  border-color: #04486F;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #04486F;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: background 0.3s;
+}
 
- }
-
- .talks-title {
+.working-paper-title {
   font-weight: 800;
   font-size: 1.1rem;
   color: #04486F;
- }
-  
-  .sidebar-btn.active,
-  .sidebar-btn:hover {
-    background: linear-gradient(450deg, #00525E, #076573, #0F7989);
-    color: white;
-  }
-  
-  .insights-content {
-    flex: 1;
-    display: flex;
+}
+
+.talks-title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #04486F;
+}
+
+.sidebar-btn.active,
+.sidebar-btn:hover {
+  background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+  color: white;
+}
+
+.insights-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+}
+
+.insight-item {
+  padding: 15px;
+  border-bottom: 2px solid #04486F70;
+}
+
+.insight-author {
+  font-weight: 700;
+  color: #04486F;
+}
+
+.insight-title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #04486F;
+}
+
+.insight-journal {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #04486F;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.pagination button {
+  background: none;
+  border: 1px solid #00525E;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button.active,
+.pagination button:hover {
+  background: #00525E;
+  color: white;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .insights-container {
     flex-direction: column;
-    padding-left: 10%;
+    padding: 40px 10px;
   }
-  
-  .insight-item {
-    padding: 15px;
-    border-bottom: 2px solid #04486F70;
+
+  .insights-box {
+    width: 100%;
   }
-  
-  .insight-author {
-    font-weight: 700;
-    color: #04486F;
+
+  .insights-title {
+    font-size: 2rem;
+    text-align: center;
   }
-  
-  .insight-title {
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: #04486F;
-  }
-  
-  .insight-journal {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #04486F;
-  }
-  
-  .pagination {
-    display: flex;
-    gap: 5px;
-    margin-top: 20px;
+
+  .sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
+    margin-top: 10%;
+    gap: 8px;
   }
-  
+
+  .sidebar-btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .insights-content {
+    padding-left: 0;
+  }
+
+  .insight-item {
+    padding: 10px;
+  }
+
+  .insight-author {
+    font-size: 0.9rem;
+  }
+
+  .insight-title {
+    font-size: 1rem;
+  }
+
+  .insight-journal {
+    font-size: 0.8rem;
+  }
+
+  .working-paper-title,
+  .talks-title {
+    font-size: 1rem;
+  }
+
+  .working-paper-description,
+  .talks-description {
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    gap: 3px;
+  }
+
   .pagination button {
-    background: none;
-    border: 1px solid #00525E;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 0.9rem;
   }
-  
-  .pagination button.active,
-  .pagination button:hover {
-    background: #00525E;
-    color: white;
+}
+
+@media (max-width: 480px) {
+  .insights-title {
+    font-size: 1.8rem;
   }
-  
-  @media (max-width: 768px) {
-    .insights-container {
-      flex-direction: column;
-    }
-  
-    .sidebar {
-      flex-direction: row;
-      justify-content: center;
-      gap: 15px;
-    }
+
+  .sidebar-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
   }
-  
+
+  .insight-author {
+    font-size: 0.8rem;
+  }
+
+  .insight-title {
+    font-size: 0.9rem;
+  }
+
+  .insight-journal {
+    font-size: 0.7rem;
+  }
+
+  .working-paper-title,
+  .talks-title {
+    font-size: 0.9rem;
+  }
+
+  .working-paper-description,
+  .talks-description {
+    font-size: 0.8rem;
+  }
+
+  .pagination button {
+    padding: 3px 6px;
+    font-size: 0.8rem;
+  }
+}

@@ -1,58 +1,71 @@
 .about-container {
-    max-width: 1200px;
-    margin: 5% auto;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .about-title {
-    font-size: 2.5rem;
-    background: linear-gradient(90deg, #00525E, #076573, #0F7989);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent; /* Fallback for unsupported browsers */
+  max-width: 1200px;
+  margin: 5% auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-  
-  .about-text {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #333;
-    text-align: justify;
+.about-title {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #00525E, #076573, #0F7989);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Fallback for unsupported browsers */
+}
+
+.about-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+  /* Justify text for better readability */
+}
+
+.first-letter {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #00525E;
+  float: left;
+  /* Ensure the first letter floats to the left */
+  margin-right: 8px;
+  /* Add some spacing between the first letter and the rest of the text */
+  line-height: 1;
+  /* Adjust line height to align properly with the text */
+}
+
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2rem;
   }
-  
+
   .first-letter {
-    font-size: 5rem;
-    font-weight: bold;
-    color: #00525E;
-    float: left;
-    margin-right: 8px;
+    font-size: 2.5rem;
+    line-height: 1.4;
+    /* Adjust size for smaller screens */
   }
-  
-  @media (max-width: 768px) {
-    .about-title {
-      font-size: 2rem;
-    }
-  
-    .first-letter {
-      font-size: 2.5rem;
-    }
+}
+
+@media (max-width: 480px) {
+  .about-container {
+    padding: 20px;
   }
-  
-  @media (max-width: 480px) {
-    .about-container {
-      padding: 20px;
-    }
-  
-    .about-title {
-      font-size: 1.8rem;
-      text-align: center;
-    }
-  
-    .first-letter {
-      font-size: 2rem;
-    }
+
+  .about-title {
+    font-size: 1.8rem;
+    text-align: center;
+    /* Center the title for mobile */
   }
-  
+
+  .about-text {
+    text-align: left;
+    /* Ensure text is left-aligned for mobile */
+  }
+
+  .first-letter {
+    font-size: 2rem;
+    /* Adjust size for very small screens */
+  }
+}

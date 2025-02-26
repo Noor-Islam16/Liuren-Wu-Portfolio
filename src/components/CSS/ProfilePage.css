@@ -7,7 +7,8 @@
     --border-radius: 30px;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -91,7 +92,7 @@ html, body {
 .profile-image-container {
     flex: 1;
     display: flex;
-    justify-content:end;
+    justify-content: end;
     position: relative;
 }
 
@@ -146,6 +147,12 @@ html, body {
         font-size: 2.5rem;
     }
 
+    .profile-title {
+        font-size: 1rem;
+        white-space: pre-line;
+        /* Ensure the title breaks into two lines */
+    }
+
     .profile-image {
         width: 250px;
         height: 250px;
@@ -155,6 +162,10 @@ html, body {
         bottom: 0;
         left: auto;
         right: 10%;
+        padding: 8px 12px;
+        /* Reduce padding for mobile view */
+        font-size: 0.9rem;
+        /* Reduce font size for mobile view */
     }
 
     .navigation {
@@ -181,8 +192,20 @@ html, body {
         font-size: 14px;
     }
 
+    .profile-title {
+        font-size: 1rem;
+        white-space: pre-line;
+    }
+
     .nav-link.contact-button {
         padding: 8px 20px;
+    }
+
+    .article-badge {
+        padding: 6px 10px;
+        /* Further reduce padding for smaller screens */
+        font-size: 0.8rem;
+        /* Further reduce font size for smaller screens */
     }
 }
 
@@ -193,10 +216,18 @@ html, body {
 
     .profile-title {
         font-size: 1rem;
+        white-space: pre-line;
     }
 
     .profile-image {
         width: 180px;
         height: 180px;
+    }
+
+    .article-badge {
+        padding: 5px 8px;
+        /* Further reduce padding for very small screens */
+        font-size: 0.7rem;
+        /* Further reduce font size for very small screens */
     }
 }
