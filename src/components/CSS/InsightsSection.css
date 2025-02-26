@@ -43,10 +43,11 @@
   font-size: 1.1rem;
   color: #04486F;
 }
- .working-paper-description,
- .talks-description {
+
+.working-paper-description,
+.talks-description {
   text-align: justify;
- }
+}
 
 .talks-title {
   font-weight: 800;
@@ -65,6 +66,8 @@
   display: flex;
   flex-direction: column;
   padding-left: 10%;
+  min-height: 600px;
+  /* Consistent height for all content sections */
 }
 
 .insight-item {
@@ -102,12 +105,24 @@
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
+  width: 40px;
+  /* Consistent width for pagination buttons */
+  height: 40px;
+  /* Consistent height for pagination buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pagination button.active,
 .pagination button:hover {
   background: #00525E;
   color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Mobile Responsive Styles */
@@ -129,14 +144,12 @@
   .sidebar {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* Two columns for mobile */
     gap: 10px;
     margin-top: 10%;
   }
 
   .sidebar-btn {
     width: 100%;
-    /* Ensure all buttons have the same width */
     font-size: 0.9rem;
     padding: 10px;
     text-align: center;
@@ -144,6 +157,8 @@
 
   .insights-content {
     padding-left: 0;
+    min-height: 500px;
+    /* Adjusted height for mobile */
   }
 
   .insight-item {
@@ -180,6 +195,10 @@
   .pagination button {
     padding: 4px 8px;
     font-size: 0.9rem;
+    width: 35px;
+    /* Adjusted width for mobile */
+    height: 35px;
+    /* Adjusted height for mobile */
   }
 }
 
@@ -219,5 +238,9 @@
   .pagination button {
     padding: 3px 6px;
     font-size: 0.8rem;
+    width: 30px;
+    /* Adjusted width for smaller screens */
+    height: 30px;
+    /* Adjusted height for smaller screens */
   }
 }
