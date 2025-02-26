@@ -3,7 +3,12 @@ import "../components/CSS/InsightsSection.css";
 
 const InsightsSection = () => {
   const [activeTab, setActiveTab] = useState("Publications");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPages, setCurrentPages] = useState({
+    Publications: 1,
+    "Working Papers": 1,
+    Talks: 1,
+    Search: 1,
+  });
 
   const insightsData = [
     {
@@ -477,16 +482,22 @@ const InsightsSection = () => {
   ];
 
   const itemsPerPage = 6;
-  const totalPages = Math.ceil(insightsData.length / itemsPerPage);
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
+    setCurrentPages((prevPages) => ({
+      ...prevPages,
+      [activeTab]: page,
+    }));
   };
 
-  const paginatedData = insightsData.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const getPaginatedData = (data) => {
+    const currentPage = currentPages[activeTab];
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return data.slice(startIndex, endIndex);
+  };
+
+  const totalPages = (data) => Math.ceil(data.length / itemsPerPage);
 
   return (
     <section className="insights-container">
@@ -532,7 +543,7 @@ const InsightsSection = () => {
             ))}
           </div>
         ) : (
-          paginatedData.map((item, index) => (
+          getPaginatedData(insightsData).map((item, index) => (
             <div key={index} className="insight-item">
               <p className="insight-author">{item.author}</p>
               <p className="insight-title">
@@ -550,23 +561,23 @@ const InsightsSection = () => {
         )}
         <div className="pagination">
           <button
-            disabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPages[activeTab] === 1}
+            onClick={() => handlePageChange(currentPages[activeTab] - 1)}
           >
             &lt;
           </button>
-          {Array.from({ length: totalPages }, (_, i) => (
+          {Array.from({ length: totalPages(insightsData) }, (_, i) => (
             <button
               key={i + 1}
-              className={currentPage === i + 1 ? "active" : ""}
+              className={currentPages[activeTab] === i + 1 ? "active" : ""}
               onClick={() => handlePageChange(i + 1)}
             >
               {i + 1}
             </button>
           ))}
           <button
-            disabled={currentPage === totalPages}
-            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPages[activeTab] === totalPages(insightsData)}
+            onClick={() => handlePageChange(currentPages[activeTab] + 1)}
           >
             &gt;
           </button>
