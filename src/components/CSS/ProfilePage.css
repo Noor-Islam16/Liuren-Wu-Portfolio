@@ -48,14 +48,19 @@ body {
     gap: 50px;
     align-items: left;
     margin-left: 5%;
+    
 }
 
 .nav-link {
     text-decoration: none;
     font-size: 16px;
-    color: var(--text-color);
-    font-weight: 500;
     position: relative;
+    background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-weight: 700;
 }
 
 .left-nav {
@@ -64,12 +69,22 @@ body {
 }
 
 .nav-link.contact-button {
-    background:linear-gradient(450deg, #00525E, #076573, #0F7989);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-weight: bold;
-}
+        background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+        color: white;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: bold;
+        -webkit-text-fill-color: white;
+        /* Ensure text color is white */
+    }
+
+    /* Active Contact Button */
+    .nav-link.contact-button.active {
+        background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+        color: white;
+        -webkit-text-fill-color: white;
+        /* Ensure text color is white */
+    }
 
 /* Profile Content */
 .profile-content {
