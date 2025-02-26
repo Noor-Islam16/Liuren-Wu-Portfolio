@@ -5,6 +5,7 @@
     --text-color: #263238;
     --background-color: #f5f5f5;
     --border-radius: 30px;
+    --third-color: linear-gradient(450deg, #00525E, #076573, #0F7989);
 }
 
 html,
@@ -28,6 +29,7 @@ body {
     justify-content: center;
     box-sizing: border-box;
     position: relative;
+    background-color: white;
 }
 
 /* Navigation */
@@ -42,8 +44,9 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 25px;
-    align-items: center;
+    margin-top: 15%;
+    gap: 50px;
+    align-items: left;
     margin-left: 5%;
 }
 
@@ -55,8 +58,13 @@ body {
     position: relative;
 }
 
+.left-nav {
+    display: flex;
+    flex-direction: column;
+}
+
 .nav-link.contact-button {
-    background: var(--secondary-color);
+    background:linear-gradient(450deg, #00525E, #076573, #0F7989);
     color: white;
     padding: 10px 25px;
     border-radius: 25px;
@@ -67,30 +75,49 @@ body {
 .profile-content {
     padding: 0px 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
 }
 
 .profile-info {
     flex: 1;
-    max-width: 45%;
+    max-width: 100%;
     /* Default for desktop */
     text-align: left;
     /* Default for desktop */
+    margin-top: 20%;
+}
+
+.highlighted-title {
+    color: #04486f;
+    /* Color for "Wollman Distinguished" */
+}
+
+.regular-title {
+    color: #000000;
+    /* Black color for "Professor of Finance" */
 }
 
 .profile-name {
     font-size: 4rem;
     font-weight: bold;
-    color: var(--primary-color);
     margin-bottom: 10px;
+    font-family: Rethink Sans;
+background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+    -webkit-background-clip: text;
+    /* Vendor prefix for Safari and older versions of Chrome */
+    background-clip: text;
+    /* Standard property */
+    -webkit-text-fill-color: transparent;
+    /* Required for webkit browsers to make text transparent */
 }
 
 .profile-title {
     font-size: 1.3rem;
     font-weight: bold;
+    font-family: Rethink Sans;
 }
 
 .profile-image-container {
@@ -101,8 +128,8 @@ body {
 }
 
 .profile-image {
-    width: 350px;
-    height: 350px;
+    width: 80%;
+    height: 100%;
     border-radius: 50%;
     background-color: white;
     overflow: hidden;
@@ -117,16 +144,16 @@ body {
 
 .article-badge {
     position: absolute;
-    bottom: 0px;
+    bottom: 160px;
     /* Adjust this value to position the badge below the image */
-    left: 50%;
+    left: 20%;
     /* Center the badge horizontally */
     transform: translateX(-50%);
     /* Center the badge horizontally */
-    background: var(--secondary-color);
+    background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     color: white;
     border-radius: 10px;
-    padding: 12px 18px;
+    padding: 12px 12px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -142,7 +169,7 @@ body {
 
     .profile-image {
         width: 300px;
-        height: 300px;
+        height: 100%;
     }
          .article-badge {
              bottom: -15px;

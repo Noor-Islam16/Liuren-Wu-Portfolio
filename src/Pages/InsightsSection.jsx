@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BookOpen, Send, Volume2, Search } from "lucide-react"; // Import Lucide icons
 import "../components/CSS/InsightsSection.css";
 
 const InsightsSection = () => {
@@ -499,89 +500,112 @@ const InsightsSection = () => {
 
   const totalPages = (data) => Math.ceil(data.length / itemsPerPage);
 
+  const renderPagination = () => {
+    const totalPageCount = totalPages(insightsData);
+    const currentPage = currentPages[activeTab];
+    const pageNumbers = [];
+
+    if (totalPageCount <= 5) {
+      for (let i = 1; i <= totalPageCount; i++) {
+        pageNumbers.push(i);
+      }
+    } else {
+      pageNumbers.push(1);
+
+      // if (currentPage > 3) {
+      //   pageNumbers.push("...");
+      // }
+
+      let startPage = Math.max(2, currentPage - 1);
+      let endPage = Math.min(totalPageCount - 1, currentPage + 1);
+
+      for (let i = startPage; i <= endPage; i++) {
+        pageNumbers.push(i);
+      }
+
+      if (currentPage < totalPageCount - 2) {
+        pageNumbers.push("...");
+      }
+
+      pageNumbers.push(totalPageCount);
+    }
+
+    return (
+      <div className="pagination">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+        >
+          &lt;
+        </button>
+
+        {pageNumbers.map((page, index) =>
+          typeof page === "number" ? (
+            <button
+              key={index}
+              className={currentPage === page ? "active" : ""}
+              onClick={() => handlePageChange(page)}
+            >
+              {page}
+            </button>
+          ) : (
+            <span key={index} className="pagination-ellipsis">
+              ...
+            </span>
+          )
+        )}
+
+        <button
+          disabled={currentPage === totalPageCount}
+          onClick={() => handlePageChange(currentPage + 1)}
+        >
+          &gt;
+        </button>
+      </div>
+    );
+  };
+
   return (
     <section className="insights-container">
       <div className="insights-box">
         <h2 className="insights-title">Insights</h2>
         <div className="sidebar">
-          {["Publications", "Working Papers", "Talks", "Search"].map((tab) => (
+          {[
+            { tab: "Publications", icon: <BookOpen size={20} /> },
+            { tab: "Working Papers", icon: <Send size={20} /> },
+            { tab: "Talks", icon: <Volume2 size={20} /> },
+            { tab: "Search", icon: <Search size={20} /> },
+          ].map(({ tab, icon }) => (
             <button
               key={tab}
               className={`sidebar-btn ${activeTab === tab ? "active" : ""}`}
               onClick={() => setActiveTab(tab)}
             >
-              {tab}
+              <span className="icon-text-container">
+                {icon}
+                <span className="tab-text">{tab}</span>
+              </span>
             </button>
           ))}
         </div>
       </div>
       <div className="insights-content">
-        {activeTab === "Working Papers" ? (
-          <div>
-            {workingPapersDescription.map((item, index) => (
-              <div key={index} className="working-paper-item">
-                <p className="working-paper-title">
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.line}
-                  </a>
-                </p>
-                <p className="working-paper-description">{item.description}</p>
-              </div>
-            ))}
+        {getPaginatedData(insightsData).map((item, index) => (
+          <div key={index} className="insight-item">
+            <p className="insight-author">{item.author}</p>
+            <p className="insight-title">
+              {item.link ? (
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  {item.title}
+                </a>
+              ) : (
+                item.title
+              )}
+            </p>
+            <p className="insight-journal">{item.journal}</p>
           </div>
-        ) : activeTab === "Talks" ? (
-          <div>
-            {talksDescription.map((item, index) => (
-              <div key={index} className="talks-item">
-                <p className="talks-title">
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.line}
-                  </a>
-                </p>
-                <p className="talks-description">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          getPaginatedData(insightsData).map((item, index) => (
-            <div key={index} className="insight-item">
-              <p className="insight-author">{item.author}</p>
-              <p className="insight-title">
-                {item.link ? (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    {item.title}
-                  </a>
-                ) : (
-                  item.title
-                )}
-              </p>
-              <p className="insight-journal">{item.journal}</p>
-            </div>
-          ))
-        )}
-        <div className="pagination">
-          <button
-            disabled={currentPages[activeTab] === 1}
-            onClick={() => handlePageChange(currentPages[activeTab] - 1)}
-          >
-            &lt;
-          </button>
-          {Array.from({ length: totalPages(insightsData) }, (_, i) => (
-            <button
-              key={i + 1}
-              className={currentPages[activeTab] === i + 1 ? "active" : ""}
-              onClick={() => handlePageChange(i + 1)}
-            >
-              {i + 1}
-            </button>
-          ))}
-          <button
-            disabled={currentPages[activeTab] === totalPages(insightsData)}
-            onClick={() => handlePageChange(currentPages[activeTab] + 1)}
-          >
-            &gt;
-          </button>
-        </div>
+        ))}
+        {renderPagination()}
       </div>
     </section>
   );

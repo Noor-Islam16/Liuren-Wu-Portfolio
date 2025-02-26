@@ -1,10 +1,22 @@
 .insights-container {
+  font-family: Rethink Sans;
   display: flex;
-  max-width: 1200px;
-  margin: 5% auto;
+  max-width: 100%;
+  /* margin: 5% auto; */
   padding: 80px 20px;
   gap: 30px;
   background-color: #DAEAF03B;
+  /* Semi-transparent background color */
+  background-image: url('../../assets/bg1.png');
+  /* Add your background image path */
+  background-size: cover;
+  /* Ensure the image covers the entire container */
+  background-position: center;
+  /* Center the background image */
+  background-blend-mode: overlay;
+  /* Blend the background color with the image */
+  border-radius: 10px;
+  /* Optional: Add rounded corners */
 }
 
 .insights-box {
@@ -76,6 +88,7 @@
   display: flex;
   flex-direction: column;
   padding-left: 10%;
+  padding-right: 10%;
   min-height: 600px;
   /* Minimum height to ensure consistency */
 }
@@ -129,7 +142,7 @@
 
 .pagination button.active,
 .pagination button:hover {
-  background: #00525E;
+  background: linear-gradient(450deg, #00525E, #076573, #0F7989);
   color: white;
 }
 
@@ -138,6 +151,30 @@
   cursor: not-allowed;
 }
 
+.icon-text-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Adjust the gap between icon and text */
+}
+
+.tab-text {
+  margin-left: 10px;
+  /* Add margin to the left of the text */
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  /* Same width as buttons */
+  height: 40px;
+  /* Same height as buttons */
+  font-size: 1rem;
+  color: #00525E;
+  font-weight: bold;
+}
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .insights-container {

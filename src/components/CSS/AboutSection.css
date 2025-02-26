@@ -1,9 +1,12 @@
 .about-container {
-  max-width: 1200px;
-  margin: 5% auto;
+  max-width: 100%;
+  /* margin: 5% auto; */
   padding: 40px 20px;
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+  font-family: Rethink Sans;
+  /* Align items to the top */
 }
 
 .about-title {
@@ -13,7 +16,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  /* Fallback for unsupported browsers */
+  padding-right: 10%;
+  /* Add margin to the right of the title */
+  white-space: nowrap;
+  /* Prevent the title from wrapping */
 }
 
 .about-text {
@@ -21,39 +27,49 @@
   line-height: 1.8;
   color: #333;
   text-align: justify;
-  /* Ensure text is justified */
   hyphens: auto;
-  /* Enable hyphenation for better justification */
+  
+  flex: 1;
+  /* Allow the text to take up the remaining space */
+  padding-right: 5%;
 }
 
 .first-letter {
-  font-size: 5rem;
-  font-weight: bold;
+  font-size: 7rem;
+  font-weight: '600';
   color: #00525E;
   float: left;
-  /* Ensure the first letter floats to the left */
   margin-right: 8px;
-  /* Add some spacing between the first letter and the rest of the text */
   line-height: 1;
-  /* Adjust line height to align properly with the text */
 }
 
 @media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    /* Stack items vertically on smaller screens */
+    align-items: center;
+    /* Center items horizontally */
+  }
+
   .about-title {
     font-size: 2rem;
+    margin-right: 0;
+    /* Remove margin on smaller screens */
+    margin-bottom: 20px;
+    /* Add margin below the title */
+  }
+
+  .about-text {
+    margin-left: 0;
+    /* Remove margin on smaller screens */
+    text-align: justify;
+    hyphens: auto;
   }
 
   .first-letter {
     font-size: 2.5rem;
     line-height: 1.4;
-    /* Adjust size for smaller screens */
   }
-    .about-text {
-      text-align: justify;
-      /* Ensure text is justified on mobile */
-      hyphens: auto;
-      /* Enable hyphenation for better justification */
-    }
 }
 
 @media (max-width: 480px) {
@@ -64,18 +80,14 @@
   .about-title {
     font-size: 1.8rem;
     text-align: center;
-    /* Center the title for mobile */
   }
 
- .about-text {
-   text-align: justify;
-   /* Ensure text is justified on mobile */
-   hyphens: auto;
-   /* Enable hyphenation for better justification */
- }
+  .about-text {
+    text-align: justify;
+    hyphens: auto;
+  }
 
   .first-letter {
     font-size: 2rem;
-    /* Adjust size for very small screens */
   }
 }
