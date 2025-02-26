@@ -21,7 +21,9 @@
   line-height: 1.8;
   color: #333;
   text-align: justify;
-  /* Justify text for better readability */
+  /* Ensure text is justified */
+  hyphens: auto;
+  /* Enable hyphenation for better justification */
 }
 
 .first-letter {
@@ -46,6 +48,12 @@
     line-height: 1.4;
     /* Adjust size for smaller screens */
   }
+    .about-text {
+      text-align: justify;
+      /* Ensure text is justified on mobile */
+      hyphens: auto;
+      /* Enable hyphenation for better justification */
+    }
 }
 
 @media (max-width: 480px) {
@@ -59,10 +67,12 @@
     /* Center the title for mobile */
   }
 
-  .about-text {
-    text-align: left;
-    /* Ensure text is left-aligned for mobile */
-  }
+ .about-text {
+   text-align: justify;
+   /* Ensure text is justified on mobile */
+   hyphens: auto;
+   /* Enable hyphenation for better justification */
+ }
 
   .first-letter {
     font-size: 2rem;

@@ -43,6 +43,10 @@
   font-size: 1.1rem;
   color: #04486F;
 }
+ .working-paper-description,
+ .talks-description {
+  text-align: justify;
+ }
 
 .talks-title {
   font-weight: 800;
@@ -166,6 +170,7 @@
   .working-paper-description,
   .talks-description {
     font-size: 0.9rem;
+    text-align: justify;
   }
 
   .pagination {
@@ -208,6 +213,7 @@
   .working-paper-description,
   .talks-description {
     font-size: 0.8rem;
+    text-align: justify;
   }
 
   .pagination button {
