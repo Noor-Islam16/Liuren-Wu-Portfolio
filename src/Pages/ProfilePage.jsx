@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../components/CSS/ProfilePage.css";
-import profileImage from "../assets/port.png";
+import profileImage from "../assets/pro2.png";
 import Pattern from "../assets/back.png";
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("about");
