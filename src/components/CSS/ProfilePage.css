@@ -75,6 +75,9 @@ body {
 .profile-info {
     flex: 1;
     max-width: 45%;
+    /* Default for desktop */
+    text-align: left;
+    /* Default for desktop */
 }
 
 .profile-name {
@@ -139,38 +142,42 @@ body {
 
 @media (max-width: 768px) {
     .profile-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-name {
-        font-size: 2.5rem;
-    }
-
-    .profile-title {
-        font-size: 1rem;
-        white-space: pre-line;
-        /* Ensure the title breaks into two lines */
-    }
-
-    .profile-image {
-        width: 250px;
-        height: 250px;
-    }
-
-    .article-badge {
-        bottom: 0;
-        left: auto;
-        right: 10%;
-        padding: 8px 12px;
-        /* Reduce padding for mobile view */
-        font-size: 0.9rem;
-        /* Reduce font size for mobile view */
-    }
-
-    .navigation {
-        justify-content: center;
-    }
+            flex-direction: column;
+            text-align: center;
+        }
+    
+        .profile-info {
+            max-width: 100%;
+            /* Take full width on mobile and tablet */
+            text-align: center;
+            /* Center text on mobile and tablet */
+        }
+    
+        .profile-name {
+            font-size: 2.5rem;
+        }
+    
+        .profile-title {
+            font-size: 1rem;
+            white-space: pre-line;
+        }
+    
+        .profile-image {
+            width: 250px;
+            height: 250px;
+        }
+    
+        .article-badge {
+            bottom: 0;
+            left: auto;
+            right: 10%;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+    
+        .navigation {
+            justify-content: center;
+        }
 }
 
 @media (max-width: 480px) {
