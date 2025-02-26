@@ -154,7 +154,7 @@
 .icon-text-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  /* gap: 5px; */
   /* Adjust the gap between icon and text */
 }
 

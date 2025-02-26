@@ -158,12 +158,12 @@ body {
 .article-badge {
     position: absolute;
     bottom: 160px;
-    left: 12%;
+    left: 10%;
     transform: translateX(-50%);
     background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     color: white;
     border-radius: 10px;
-    padding: 12px 12px;
+    padding: 16px 12px;
     font-weight: bold;
     display: flex;
     flex-direction: column;

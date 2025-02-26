@@ -481,7 +481,6 @@ const InsightsSection = () => {
       link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4922029",
     },
   ];
-
   const itemsPerPage = 6;
 
   const handlePageChange = (page) => {
@@ -500,8 +499,8 @@ const InsightsSection = () => {
 
   const totalPages = (data) => Math.ceil(data.length / itemsPerPage);
 
-  const renderPagination = () => {
-    const totalPageCount = totalPages(insightsData);
+  const renderPagination = (data) => {
+    const totalPageCount = totalPages(data);
     const currentPage = currentPages[activeTab];
     const pageNumbers = [];
 
@@ -511,10 +510,6 @@ const InsightsSection = () => {
       }
     } else {
       pageNumbers.push(1);
-
-      // if (currentPage > 3) {
-      //   pageNumbers.push("...");
-      // }
 
       let startPage = Math.max(2, currentPage - 1);
       let endPage = Math.min(totalPageCount - 1, currentPage + 1);
@@ -565,6 +560,88 @@ const InsightsSection = () => {
     );
   };
 
+  const renderContent = () => {
+    switch (activeTab) {
+      case "Publications":
+        return (
+          <>
+            {getPaginatedData(insightsData).map((item, index) => (
+              <div key={index} className="insight-item">
+                <p className="insight-author">{item.author}</p>
+                <p className="insight-title">
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </p>
+                <p className="insight-journal">{item.journal}</p>
+              </div>
+            ))}
+            {renderPagination(insightsData)}
+          </>
+        );
+      case "Working Papers":
+        return (
+          <>
+            {getPaginatedData(workingPapersDescription).map((item, index) => (
+              <div key={index} className="insight-item">
+                <p className="insight-author">{item.line}</p>
+                <p className="insight-title">
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.description}
+                    </a>
+                  ) : (
+                    item.description
+                  )}
+                </p>
+              </div>
+            ))}
+            {renderPagination(workingPapersDescription)}
+          </>
+        );
+      case "Talks":
+        return (
+          <>
+            {getPaginatedData(talksDescription).map((item, index) => (
+              <div key={index} className="insight-item">
+                <p className="insight-author">{item.line}</p>
+                <p className="insight-title">
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.description}
+                    </a>
+                  ) : (
+                    item.description
+                  )}
+                </p>
+              </div>
+            ))}
+            {renderPagination(talksDescription)}
+          </>
+        );
+      case "Search":
+        return <div>Search content goes here...</div>;
+      default:
+        return null;
+    }
+  };
+
   return (
     <section className="insights-container">
       <div className="insights-box">
@@ -589,24 +666,7 @@ const InsightsSection = () => {
           ))}
         </div>
       </div>
-      <div className="insights-content">
-        {getPaginatedData(insightsData).map((item, index) => (
-          <div key={index} className="insight-item">
-            <p className="insight-author">{item.author}</p>
-            <p className="insight-title">
-              {item.link ? (
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
-                  {item.title}
-                </a>
-              ) : (
-                item.title
-              )}
-            </p>
-            <p className="insight-journal">{item.journal}</p>
-          </div>
-        ))}
-        {renderPagination()}
-      </div>
+      <div className="insights-content">{renderContent()}</div>
     </section>
   );
 };
