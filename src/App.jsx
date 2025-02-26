@@ -14,9 +14,9 @@ function App() {
       <div id="publications">
         <InsightsSection />
       </div>
-      <div id="classes">
+      {/* <div id="classes">
         <ClassesSection />
-      </div>
+      </div> */}
       <div id="contact">
         <Footer />
       </div>
