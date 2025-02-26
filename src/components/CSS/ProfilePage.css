@@ -45,10 +45,12 @@ body {
 .nav-links {
     display: flex;
     margin-top: 15%;
-    gap: 50px;
+    gap: 10px;
+    /* Reduced gap for smaller screens */
     align-items: left;
-    margin-left: 5%;
-    
+    margin-left: 10%;
+    flex-wrap: wrap;
+    /* Allow buttons to wrap on smaller screens */
 }
 
 .nav-link {
@@ -61,30 +63,31 @@ body {
     -webkit-text-fill-color: transparent;
     color: transparent;
     font-weight: 700;
+    padding: 5px 10px;
+    /* Added padding for better touch targets */
 }
 
 .left-nav {
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 
 .nav-link.contact-button {
-        background: linear-gradient(450deg, #00525E, #076573, #0F7989);
-        color: white;
-        padding: 10px 25px;
-        border-radius: 25px;
-        font-weight: bold;
-        -webkit-text-fill-color: white;
-        /* Ensure text color is white */
-    }
+    background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    -webkit-text-fill-color: white;
+}
 
-    /* Active Contact Button */
-    .nav-link.contact-button.active {
-        background: linear-gradient(450deg, #00525E, #076573, #0F7989);
-        color: white;
-        -webkit-text-fill-color: white;
-        /* Ensure text color is white */
-    }
+/* Active Contact Button */
+.nav-link.contact-button.active {
+    background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+    color: white;
+    -webkit-text-fill-color: white;
+}
 
 /* Profile Content */
 .profile-content {
@@ -99,20 +102,17 @@ body {
 .profile-info {
     flex: 1;
     max-width: 100%;
-    /* Default for desktop */
     text-align: left;
-    /* Default for desktop */
+    margin-left: 5%;
     margin-top: 20%;
 }
 
 .highlighted-title {
     color: #04486f;
-    /* Color for "Wollman Distinguished" */
 }
 
 .regular-title {
     color: #000000;
-    /* Black color for "Professor of Finance" */
 }
 
 .profile-name {
@@ -120,13 +120,10 @@ body {
     font-weight: bold;
     margin-bottom: 10px;
     font-family: Rethink Sans;
-background: linear-gradient(450deg, #00525E, #076573, #0F7989);
+    background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     -webkit-background-clip: text;
-    /* Vendor prefix for Safari and older versions of Chrome */
     background-clip: text;
-    /* Standard property */
     -webkit-text-fill-color: transparent;
-    /* Required for webkit browsers to make text transparent */
 }
 
 .profile-title {
@@ -143,7 +140,8 @@ background: linear-gradient(450deg, #00525E, #076573, #0F7989);
 }
 
 .profile-image {
-    width: 80%;
+    margin-left: 10%;
+    width: 100%;
     height: 100%;
     border-radius: 50%;
     background-color: white;
@@ -160,11 +158,8 @@ background: linear-gradient(450deg, #00525E, #076573, #0F7989);
 .article-badge {
     position: absolute;
     bottom: 160px;
-    /* Adjust this value to position the badge below the image */
-    left: 20%;
-    /* Center the badge horizontally */
+    left: 12%;
     transform: translateX(-50%);
-    /* Center the badge horizontally */
     background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     color: white;
     border-radius: 10px;
@@ -174,8 +169,8 @@ background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     flex-direction: column;
     align-items: center;
     z-index: 1;
-    /* Ensure the badge is above the image */
 }
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .profile-name {
@@ -186,50 +181,65 @@ background: linear-gradient(450deg, #00525E, #076573, #0F7989);
         width: 300px;
         height: 100%;
     }
-         .article-badge {
-             bottom: -15px;
-             /* Adjust for smaller screens */
-             padding: 10px 15px;
-         }
+
+    .article-badge {
+        bottom: -15px;
+        padding: 10px 15px;
+    }
 }
 
 @media (max-width: 768px) {
     .profile-content {
-            flex-direction: column;
-            text-align: center;
-        }
-    
-        .profile-info {
-            max-width: 100%;
-            /* Take full width on mobile and tablet */
-            text-align: center;
-            /* Center text on mobile and tablet */
-        }
-    
-        .profile-name {
-            font-size: 2.5rem;
-        }
-    
-        .profile-title {
-            font-size: 1rem;
-            white-space: pre-line;
-        }
-    
-        .profile-image {
-            width: 250px;
-            height: 250px;
-        }
-    
-                 .article-badge {
-                     bottom: -10px;
-                     /* Adjust for tablet screens */
-                     padding: 8px 12px;
-                     font-size: 0.9rem;
-                 }
-    
-        .navigation {
-            justify-content: center;
-        }
+        flex-direction: column;
+        align-items: center;
+        /* Center content on smaller screens */
+        text-align: center;
+    }
+
+    .profile-info {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 10%;
+        /* Reduced margin for smaller screens */
+    }
+
+    .profile-name {
+        font-size: 2.5rem;
+    }
+
+    .profile-title {
+        font-size: 1rem;
+        white-space: pre-line;
+    }
+
+    .profile-image {
+        width: 250px;
+        height: 250px;
+        margin-left: 0;
+        /* Remove left margin for centered alignment */
+    }
+
+    .article-badge {
+        bottom: -10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .nav-links {
+        gap: 10px;
+        /* Reduced gap for smaller screens */
+        justify-content: center;
+        margin-top: 10%;
+        /* Adjusted margin for smaller screens */
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    .nav-link.contact-button {
+        padding: 8px 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -237,35 +247,30 @@ background: linear-gradient(450deg, #00525E, #076573, #0F7989);
         font-size: 2rem;
     }
 
-    .nav-links {
-        gap: 10px;
-        justify-content: center;
-    }
-
     .profile-image {
         width: 200px;
         height: 200px;
     }
 
+    .article-badge {
+        bottom: -8px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .nav-links {
+        gap: 5px;
+        /* Further reduced gap for mobile screens */
+    }
+
     .nav-link {
-        font-size: 14px;
+        font-size: 12px;
+        /* Smaller font size for mobile */
     }
 
     .profile-title {
-        font-size: 1rem;
-        white-space: pre-line;
+        font-size: 0.9rem;
     }
-
-    .nav-link.contact-button {
-        padding: 8px 20px;
-    }
-
-        .article-badge {
-            bottom: -8px;
-            /* Adjust for mobile screens */
-            padding: 6px 10px;
-            font-size: 0.8rem;
-        }
 }
 
 @media (max-width: 320px) {
@@ -273,20 +278,19 @@ background: linear-gradient(450deg, #00525E, #076573, #0F7989);
         font-size: 1.5rem;
     }
 
-    .profile-title {
-        font-size: 1rem;
-        white-space: pre-line;
-    }
-
     .profile-image {
         width: 180px;
         height: 180px;
     }
 
-   .article-badge {
-       bottom: -5px;
-       /* Adjust for very small screens */
-       padding: 5px 8px;
-       font-size: 0.7rem;
-   }
+    .article-badge {
+        bottom: -5px;
+        padding: 5px 8px;
+        font-size: 0.7rem;
+    }
+
+    .nav-link {
+        font-size: 10px;
+        /* Smallest font size for very small screens */
+    }
 }
