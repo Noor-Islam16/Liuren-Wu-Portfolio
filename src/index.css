@@ -124,3 +124,9 @@
       font-family: 'Rethink Sans', sans-serif;
     }
 }
+
+.custom-card {
+  border: none !important;
+  box-shadow: none !important;
+  /* Remove shadow if needed */
+}

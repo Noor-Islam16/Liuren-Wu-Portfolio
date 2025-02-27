@@ -1,6 +1,5 @@
 .about-container {
   max-width: 100%;
-  /* margin: 5% auto; */
   padding: 40px 60px;
   display: flex;
   align-items: flex-start;
@@ -8,7 +7,54 @@
   margin-top: 5%;
   margin-bottom: 5%;
   font-family: Rethink Sans;
-  /* Align items to the top */
+  position: relative;
+  /* Required for positioning pseudo-elements */
+  overflow: hidden;
+  /* Ensure the pseudo-elements don't overflow */
+}
+
+/* Semi-circle on the left side */
+.about-container::before {
+  content: '';
+  position: absolute;
+  left: -50px;
+  /* Adjust to position the semi-circle */
+  top: 80%;
+  /* Center vertically */
+  transform: translateY(-50%);
+  /* width: 100px; */
+  /* Diameter of the semi-circle */
+  /* height: 60px;
+  background-color: #04486F14;
+  border-radius: 0 100px 100px 0;
+  opacity: 0.53;
+  backdrop-filter: blur(27px); */
+    width: 100px;
+      height: 60px;
+  border-radius: 0 100px 100px 0;      
+  background: radial-gradient(circle, rgba(4, 72, 111, 0.08) 0%, rgba(4, 72, 111, 0.08) 120%, transparent 100%);
+      opacity: '8%';
+      filter: blur(10px);
+}
+
+/* Circle on the right side */
+.about-container::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  /* Adjust to position the circle */
+  top: 18%;
+  /* Center vertically */
+  transform: translateY(-50%) rotate(180deg);
+  width: 100px;
+  /* Diameter of the circle */
+  height: 100px;
+  /* Height of the circle */
+  /* Color with transparency */
+  border-radius: 0 100px 100px 0;  /* Create a circle */
+  background: radial-gradient(circle, rgba(4, 29, 111, 0.08) 0%, rgba(4, 29, 111, 0.08) 120%, transparent 100%);
+    opacity: '8%';
+    filter: blur(10px);
 }
 
 .about-title {
@@ -19,9 +65,7 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
   padding-right: 10%;
-  /* Add margin to the right of the title */
   white-space: nowrap;
-  /* Prevent the title from wrapping */
 }
 
 .about-text {
@@ -30,9 +74,7 @@
   color: #333;
   text-align: justify;
   hyphens: auto;
-  
   flex: 1;
-  /* Allow the text to take up the remaining space */
   padding-right: 5%;
 }
 
@@ -48,22 +90,17 @@
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column;
-    /* Stack items vertically on smaller screens */
     align-items: center;
-    /* Center items horizontally */
   }
 
   .about-title {
     font-size: 2rem;
     margin-right: 0;
-    /* Remove margin on smaller screens */
     margin-bottom: 20px;
-    /* Add margin below the title */
   }
 
   .about-text {
     margin-left: 0;
-    /* Remove margin on smaller screens */
     text-align: justify;
     hyphens: auto;
   }
