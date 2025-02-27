@@ -46,11 +46,9 @@ body {
     display: flex;
     margin-top: 15%;
     gap: 10px;
-    /* Reduced gap for smaller screens */
     align-items: left;
     margin-left: 10%;
     flex-wrap: wrap;
-    /* Allow buttons to wrap on smaller screens */
 }
 
 .nav-link {
@@ -64,7 +62,6 @@ body {
     color: transparent;
     font-weight: 700;
     padding: 5px 10px;
-    /* Added padding for better touch targets */
 }
 
 .left-nav {
@@ -99,15 +96,18 @@ body {
     max-width: 100%;
 }
 
+
+
 .profile-info {
     flex: 1;
     max-width: 100%;
     text-align: left;
-    margin-left: 5%;
-    margin-top: 15%;
+    /* margin-left: 2%; */
+    margin-top: 8%;
 }
 
 .highlighted-title {
+    /* margin-left: 2%; */
     color: #04486f;
 }
 
@@ -118,7 +118,7 @@ body {
 .profile-name {
     font-size: 6.875rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    /* margin-bottom: px; */
     font-family: Rethink Sans;
     background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     -webkit-background-clip: text;
@@ -144,9 +144,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    /* background-color: black; */
     overflow: hidden;
-    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .profile-image img {
@@ -186,13 +184,26 @@ body {
         bottom: -15px;
         padding: 10px 15px;
     }
+
+    .nav-links {
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10%;
+    }
+
+    .nav-link {
+        font-size: 14px;
+    }
+
+    .nav-link.contact-button {
+        padding: 8px 20px;
+    }
 }
 
 @media (max-width: 768px) {
     .profile-content {
         flex-direction: column;
         align-items: center;
-        /* Center content on smaller screens */
         text-align: center;
     }
 
@@ -200,7 +211,6 @@ body {
         max-width: 100%;
         text-align: center;
         margin-top: 10%;
-        /* Reduced margin for smaller screens */
     }
 
     .profile-name {
@@ -216,7 +226,6 @@ body {
         width: 250px;
         height: 250px;
         margin-left: 0;
-        /* Remove left margin for centered alignment */
     }
 
     .article-badge {
@@ -227,10 +236,8 @@ body {
 
     .nav-links {
         gap: 10px;
-        /* Reduced gap for smaller screens */
         justify-content: center;
         margin-top: 10%;
-        /* Adjusted margin for smaller screens */
     }
 
     .nav-link {
@@ -260,12 +267,10 @@ body {
 
     .nav-links {
         gap: 5px;
-        /* Further reduced gap for mobile screens */
     }
 
     .nav-link {
         font-size: 12px;
-        /* Smaller font size for mobile */
     }
 
     .profile-title {
@@ -291,6 +296,5 @@ body {
 
     .nav-link {
         font-size: 10px;
-        /* Smallest font size for very small screens */
     }
 }

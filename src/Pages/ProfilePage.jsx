@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "../components/CSS/ProfilePage.css";
 import profileImage from "../assets/pro2.png";
-import Pattern from "../assets/profilePort.png";
+import Pattern from "../assets/designer.png";
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("about");
 
   const profileData = {
-    // name: "Liuren Wu",
-    // title: {
-    //   highlighted: "Wollman Distinguished",
-    //   regular: "Professor of Finance",
-    // },
+    name: "Liuren Wu",
+    title: {
+      highlighted: "Wollman Distinguished",
+      regular: "Professor of Finance",
+    },
     articleCount: "50+",
     tabs: ["About", "Publications", "Classes", "Contact"],
   };
@@ -51,7 +51,7 @@ const ProfilePage = () => {
               </button>
             ))}
           </div>
-          {/* <div className="profile-info">
+          <div className="profile-info">
             <h1 className="profile-name">{profileData.name}</h1>
             <p className="profile-title">
               <span className="highlighted-title">
@@ -59,7 +59,7 @@ const ProfilePage = () => {
               </span>{" "}
               <span className="regular-title">{profileData.title.regular}</span>
             </p>
-          </div> */}
+          </div>
         </div>
         <div className="profile-info-container">
           <div className="profile-image-container">
