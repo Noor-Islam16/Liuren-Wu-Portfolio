@@ -3,6 +3,7 @@ import AboutSection from "./Pages/AboutSection";
 import InsightsSection from "./Pages/InsightsSection";
 import ClassesSection from "./Pages/ClassesSection";
 import Footer from "./Pages/Footer";
+import ContactMe from "./Pages/ContactMe";
 
 function App() {
   return (
@@ -17,9 +18,7 @@ function App() {
       {/* <div id="classes">
         <ClassesSection />
       </div> */}
-      <div id="contact">
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 }

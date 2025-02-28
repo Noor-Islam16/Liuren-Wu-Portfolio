@@ -44,10 +44,10 @@ body {
 
 .nav-links {
     display: flex;
-    margin-top: 15%;
+    /* margin-top: 15%; */
+    margin-bottom: 15%;
     gap: 10px;
     align-items: left;
-    
     flex-wrap: wrap;
 }
 

@@ -6,6 +6,7 @@ import "../components/CSS/ProfilePage.css";
 import profileImage from "../assets/pro2.png";
 import Pattern from "../assets/designer.png";
 import { splitString } from "../assets/helper/splitString";
+import ContactMe from "./ContactMe";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -111,6 +112,10 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
+      <ContactMe
+        isOpen={activeTab === "contact"}
+        onClose={() => setActiveTab("")}
+      />
     </div>
   );
 };
