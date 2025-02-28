@@ -272,12 +272,23 @@ const InsightsSection = () => {
               </span>
             </button>
           ))}
-          <input
+          {/* <input
             className="search"
             placeholder="Search"
             type="text"
             onChange={searchPaper}
-          />
+          /> */}
+
+          <div className="search-container">
+            <Search size={20} className="search-icon" />
+            <input
+              className="search placeholder-[#04486F]"
+              
+              placeholder="Search"
+              type="text"
+              onChange={searchPaper}
+            />
+          </div>
         </div>
       </div>
       <div className="insights-content">{renderContent()}</div>
