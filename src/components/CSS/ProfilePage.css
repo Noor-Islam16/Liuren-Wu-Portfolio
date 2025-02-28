@@ -47,7 +47,7 @@ body {
     margin-top: 15%;
     gap: 10px;
     align-items: left;
-    margin-left: 10%;
+    
     flex-wrap: wrap;
 }
 
@@ -88,7 +88,7 @@ body {
 
 /* Profile Content */
 .profile-content {
-    padding: 0px 20px;
+    padding: 40px 60px;
     display: flex;
     align-items: flex-start;
     justify-content: space-around;

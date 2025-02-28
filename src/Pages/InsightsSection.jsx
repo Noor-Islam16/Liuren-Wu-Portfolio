@@ -162,6 +162,10 @@ const InsightsSection = () => {
 
   const searchPaper = (e) => {
     setSearchQuery(e.target.value.toLowerCase());
+    setCurrentPages((prevPages) => ({
+      ...prevPages,
+      [activeTab]: 1, // Reset to the first page
+    }));
   };
 
   const renderContent = () => {
@@ -272,18 +276,11 @@ const InsightsSection = () => {
               </span>
             </button>
           ))}
-          {/* <input
-            className="search"
-            placeholder="Search"
-            type="text"
-            onChange={searchPaper}
-          /> */}
 
           <div className="search-container">
             <Search size={20} className="search-icon" />
             <input
               className="search placeholder-[#04486F]"
-              
               placeholder="Search"
               type="text"
               onChange={searchPaper}
