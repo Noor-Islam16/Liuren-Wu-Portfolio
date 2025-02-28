@@ -162,6 +162,10 @@ const InsightsSection = () => {
 
   const searchPaper = (e) => {
     setSearchQuery(e.target.value.toLowerCase());
+    setCurrentPages((prevPages) => ({
+      ...prevPages,
+      [activeTab]: 1, // Reset to the first page
+    }));
   };
 
   const renderContent = () => {
@@ -261,7 +265,7 @@ const InsightsSection = () => {
           {["Publications", "Working Papers", "Talks"].map((tab) => (
             <button
               key={tab}
-              className={`sidebar-btn ${activeTab === tab ? "active" : ""}`}
+              className={sidebar-btn ${activeTab === tab ? "active" : ""}}
               onClick={() => setActiveTab(tab)}
             >
               <span className="icon-text-container">
@@ -272,18 +276,11 @@ const InsightsSection = () => {
               </span>
             </button>
           ))}
-          {/* <input
-            className="search"
-            placeholder="Search"
-            type="text"
-            onChange={searchPaper}
-          /> */}
 
           <div className="search-container">
             <Search size={20} className="search-icon" />
             <input
               className="search placeholder-[#04486F]"
-              
               placeholder="Search"
               type="text"
               onChange={searchPaper}
