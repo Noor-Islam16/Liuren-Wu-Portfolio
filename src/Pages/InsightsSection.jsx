@@ -11,6 +11,7 @@ const database = getDatabase(app);
 
 const InsightsSection = () => {
   const [activeTab, setActiveTab] = useState("Publications");
+  const [searchQuery, setSearchQuery] = useState("");
   const [currentPages, setCurrentPages] = useState({
     Publications: 1,
     "Working Papers": 1,
@@ -110,7 +111,6 @@ const InsightsSection = () => {
       }
     } else {
       pageNumbers.push(1);
-
       let startPage = Math.max(2, currentPage - 1);
       let endPage = Math.min(totalPageCount - 1, currentPage + 1);
 
@@ -161,20 +161,25 @@ const InsightsSection = () => {
   };
 
   const searchPaper = (e) => {
-    var searchTerm = e.target.value; // Get the value from the input field
-
-    searchTerm = searchTerm.toLowerCase(); // Convert the search term to lowercase
-
-    setState({ s_query: searchTerm, currentPage: 0 }); // Update the search query state
-    console.log(searchTerm);
+    setSearchQuery(e.target.value.toLowerCase());
   };
 
   const renderContent = () => {
     const data = papersData[activeTab] || [];
 
+    // Filter results based on the search term
+    const filteredData = data.filter(
+      (item) =>
+        item.Title.toLowerCase().includes(searchQuery) ||
+        item.Authors.toLowerCase().includes(searchQuery) ||
+        (item.Journal && item.Journal.toLowerCase().includes(searchQuery)) ||
+        (item.PublishingYear &&
+          item.PublishingYear.toString().includes(searchQuery))
+    );
+
     return (
       <>
-        {getPaginatedData(data).map((item, index) => (
+        {getPaginatedData(filteredData).map((item, index) => (
           <div key={index} className="insight-item">
             {/* Publications Format */}
             {activeTab === "Publications" && (
@@ -243,7 +248,7 @@ const InsightsSection = () => {
             )}
           </div>
         ))}
-        {renderPagination(data)}
+        {renderPagination(filteredData)}
       </>
     );
   };
@@ -263,7 +268,6 @@ const InsightsSection = () => {
                 {tab === "Publications" ? <BookOpen size={20} /> : null}
                 {tab === "Working Papers" ? <Send size={20} /> : null}
                 {tab === "Talks" ? <Volume2 size={20} /> : null}
-
                 <span className="tab-text">{tab}</span>
               </span>
             </button>
