@@ -37,8 +37,7 @@ const ProfilePage = () => {
           const data = snapshot.val();
           const split = splitString(data.designation);
           // console.log(split);
-          document.title =
-            data.firstName + " " + data.lastName + " | Academic Blog";
+          document.title = data.firstName + " " + data.lastName;
           setProfileData((prevData) => ({
             ...prevData,
             name: `${data.firstName} ${data.lastName}`,
