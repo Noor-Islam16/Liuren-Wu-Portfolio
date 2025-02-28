@@ -1,19 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getDatabase, ref, get } from "firebase/database"; // Firebase imports
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../firebase/creds"; // Firebase config
 import "../components/CSS/ProfilePage.css";
 import profileImage from "../assets/pro2.png";
 import Pattern from "../assets/designer.png";
+import { splitString } from "../assets/helper/splitString";
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("about");
-
-  const profileData = {
-    name: "Liuren Wu",
+  const [profileData, setProfileData] = useState({
+    name: "",
     title: {
-      highlighted: "Wollman Distinguished",
-      regular: "Professor of Finance",
+      highlighted: "",
+      regular: "",
     },
     articleCount: "50+",
     tabs: ["About", "Publications", "Classes", "Contact"],
+    profileImage: "",
+  });
+
+  useEffect(() => {
+    loadProfileData(import.meta.env.VITE_TOKEN); // Load data using the current profile token
+  }, []);
+
+  const loadProfileData = (uid) => {
+    var userRef = ref(database, "profile/" + uid);
+    get(userRef)
+      .then((snapshot) => {
+        // console.log(snapshot.val());
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const split = splitString(data.designation);
+          // console.log(split);
+          document.title =
+            data.firstName + " " + data.lastName + " | Academic Blog";
+          setProfileData((prevData) => ({
+            ...prevData,
+            name: `${data.firstName} ${data.lastName}`,
+            title: {
+              highlighted: split.firstPart,
+              regular: split.secondPart,
+            },
+            profileImage: import.meta.env.VITE_API + "images/" + data.logo,
+          }));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleTabClick = (tab) => {
@@ -32,7 +71,6 @@ const ProfilePage = () => {
       style={{
         backgroundImage: `url(${Pattern})`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
@@ -52,7 +90,8 @@ const ProfilePage = () => {
             ))}
           </div>
           <div className="profile-info">
-            <h1 className="profile-name">{profileData.name}</h1>
+            <h1 className="profile-name">{profileData.name || "Loading..."}</h1>{" "}
+            {/* Dynamic Name */}
             <p className="profile-title">
               <span className="highlighted-title">
                 {profileData.title.highlighted}
@@ -64,13 +103,12 @@ const ProfilePage = () => {
         <div className="profile-info-container">
           <div className="profile-image-container">
             <div className="profile-image">
-              <img src={profileImage} alt="Liuren Wu" className="profile-img" />
+              <img
+                src={profileData.profileImage}
+                alt={profileData.name}
+                className="profile-img"
+              />
             </div>
-
-            {/* <div className="article-badge">
-              <span className="count">{profileData.articleCount}</span>
-              <span className="label">Articles</span>
-            </div> */}
           </div>
         </div>
       </div>
