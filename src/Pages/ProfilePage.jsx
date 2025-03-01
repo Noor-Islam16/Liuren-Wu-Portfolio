@@ -80,9 +80,8 @@ const ProfilePage = () => {
             {profileData.tabs.map((tab) => (
               <button
                 key={tab}
-                className={`nav-link ${
-                  tab.toLowerCase() === "contact" ? "contact-button" : ""
-                } ${activeTab === tab.toLowerCase() ? "active" : ""}`}
+                className={`nav-link ${tab.toLowerCase() === "contact" ? "contact-button" : ""
+                  } ${activeTab === tab.toLowerCase() ? "active" : ""}`}
                 onClick={() => handleTabClick(tab)}
               >
                 {tab}
