@@ -21,8 +21,9 @@ const ProfilePage = () => {
       regular: "",
     },
     articleCount: "50+",
-    tabs: ["About", "Publications", "Classes", "Contact"],
+    tabs: ["About", "Publications", "Classes",  "Contact"],
     profileImage: "",
+    resume: "", // Added resume field
   });
 
   useEffect(() => {
@@ -33,11 +34,9 @@ const ProfilePage = () => {
     var userRef = ref(database, "profile/" + uid);
     get(userRef)
       .then((snapshot) => {
-        // console.log(snapshot.val());
         if (snapshot.exists()) {
           const data = snapshot.val();
           const split = splitString(data.designation);
-          // console.log(split);
           document.title = data.firstName + " " + data.lastName;
           setProfileData((prevData) => ({
             ...prevData,
@@ -47,6 +46,7 @@ const ProfilePage = () => {
               regular: split.secondPart,
             },
             profileImage: import.meta.env.VITE_API + "images/" + data.logo,
+            resume: data.resume || "", // Store resume URL
           }));
         }
       })
@@ -77,15 +77,26 @@ const ProfilePage = () => {
       <div className="profile-content">
         <div className="left-nav">
           <div className="nav-links">
-            {profileData.tabs.map((tab) => (
-              <button
-                key={tab}
-                className={`nav-link ${tab.toLowerCase() === "contact" ? "contact-button" : ""
-                  } ${activeTab === tab.toLowerCase() ? "active" : ""}`}
-                onClick={() => handleTabClick(tab)}
-              >
-                {tab}
-              </button>
+            {profileData.tabs.map((tab, index) => (
+              <React.Fragment key={tab}>
+                <button
+                  className={`nav-link ${tab.toLowerCase() === "contact" ? "contact-button" : ""
+                    } ${activeTab === tab.toLowerCase() ? "active" : ""}`}
+                  onClick={() => handleTabClick(tab)}
+                >
+                  {tab}
+                </button>
+
+                {/* Insert CV button after "Classes" */}
+                {tab.toLowerCase() === "classes" && profileData.resume && (
+                  <button
+                    className="nav-link"
+                    onClick={() => window.open(profileData.resume, "_blank")}
+                  >
+                    CV
+                  </button>
+                )}
+              </React.Fragment>
             ))}
           </div>
           <div className="profile-info">

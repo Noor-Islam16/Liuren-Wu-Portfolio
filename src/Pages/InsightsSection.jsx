@@ -233,7 +233,7 @@ const InsightsSection = () => {
             {/* Talks Format (With Links) */}
             {activeTab === "Talks" && (
               <>
-                <p className="insight-title">
+                <p className="insight-titleTalks">
                   {item.PaperLink ? (
                     <a
                       href={item.PaperLink}

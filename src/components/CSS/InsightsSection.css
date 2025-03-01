@@ -133,6 +133,17 @@
 
 }
 
+.insight-titleTalks {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #04486F;
+    text-align: justify;
+   margin-bottom: 5px;
+    margin-top: 15px; ;
+
+
+}
+
 .insight-author {
   font-weight: 700;
   color: #04486F;
