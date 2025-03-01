@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../firebase/creds"; // Firebase config
 import { BookOpen, Search, Send, Volume2 } from "lucide-react"; // Lucide icons
 import "../components/CSS/InsightsSection.css";
+import { getPublishDate } from "../helper/getPublishDate";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -203,7 +204,7 @@ const InsightsSection = () => {
                   )}
                 </p>
                 <p className="insight-journal">
-                  {item.Journal}, {item.PublishingYear}
+                  {item.Journal}, {getPublishDate(item.PublishingYear)}
                 </p>
               </>
             )}
@@ -225,7 +226,7 @@ const InsightsSection = () => {
                     item.Title
                   )}
                 </p>
-                <p className="insight-journal">{item.PublishingYear}</p>
+                <p className="insight-journal">{getPublishDate(item.PublishingYear)}</p>
               </>
             )}
 
@@ -246,7 +247,7 @@ const InsightsSection = () => {
                   )}
                 </p>
                 <p className="insight-journal">
-                  {item.Journal}, {item.PublishingYear}
+                  {item.Journal}, {getPublishDate(item.PublishingYear)}
                 </p>
               </>
             )}

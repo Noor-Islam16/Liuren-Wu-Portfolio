@@ -67,7 +67,7 @@ const ProfilePage = () => {
 
   return (
     <div
-      className="profile-container min-h-screen"
+      className="profile-container"
       style={{
         backgroundImage: `url(${Pattern})`,
         backgroundSize: "cover",
