@@ -32,6 +32,12 @@ body {
     background-position: bottom left;
 }
 
+@media (max-width: 768px) {
+    .profile-info-container {
+        margin-top: 30px;
+    }
+}
+
 /* Navigation */
 .navigation {
     display: flex;
