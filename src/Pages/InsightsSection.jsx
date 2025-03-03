@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getDatabase, ref, get } from "firebase/database"; // Firebase imports
+import { getDatabase, ref, get } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../firebase/creds"; // Firebase config
-import { BookOpen, Search, Send, Volume2 } from "lucide-react"; // Lucide icons
+import { firebaseConfig } from "../firebase/creds";
+import { BookOpen, Search, Send, Volume2 } from "lucide-react";
 import "../components/CSS/InsightsSection.css";
 import { getPublishDate } from "../helper/getPublishDate";
 
@@ -13,12 +13,7 @@ const database = getDatabase(app);
 const InsightsSection = () => {
   const [activeTab, setActiveTab] = useState("Publications");
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPages, setCurrentPages] = useState({
-    Publications: 1,
-    "Working Papers": 1,
-    Talks: 1,
-  });
-
+  const [currentPages, setCurrentPages] = useState({});
   const [papersData, setPapersData] = useState({
     Publications: [],
     "Working Papers": [],
@@ -26,7 +21,7 @@ const InsightsSection = () => {
   });
 
   useEffect(() => {
-    loadPapers(import.meta.env.VITE_TOKEN); // Fetch papers from Firebase
+    loadPapers(import.meta.env.VITE_TOKEN);
   }, []);
 
   const loadPapers = (uid) => {
@@ -39,7 +34,6 @@ const InsightsSection = () => {
           let workingPapers = [];
           let talks = [];
 
-          // Categorize papers and format data correctly
           Object.keys(data).forEach((key) => {
             const paper = data[key];
             const formattedPaper = {
@@ -60,22 +54,34 @@ const InsightsSection = () => {
             }
           });
 
-          // Sorting latest first (Descending order by year)
+          // Sort latest first (Descending order by year)
           const sortByYear = (a, b) => {
             const yearA = parseInt(a.PublishingYear) || 0;
             const yearB = parseInt(b.PublishingYear) || 0;
-            return yearB - yearA; // Latest first
+            return yearB - yearA;
           };
 
           publications.sort(sortByYear);
           workingPapers.sort(sortByYear);
           talks.sort(sortByYear);
 
-          setPapersData({
+          const newPapersData = {
             Publications: publications,
             "Working Papers": workingPapers,
             Talks: talks,
+          };
+
+          setPapersData(newPapersData);
+
+          // Set pages to the last page (so it starts from the last)
+          const newCurrentPages = {};
+          Object.keys(newPapersData).forEach((category) => {
+            newCurrentPages[category] = Math.max(1, Math.ceil(newPapersData[category].length / itemsPerPage));
           });
+
+          // Ensure active tab starts at its last page
+          setCurrentPages(1);
+
         }
       })
       .catch((error) => {
@@ -93,67 +99,38 @@ const InsightsSection = () => {
   };
 
   const getPaginatedData = (data) => {
-    const currentPage = currentPages[activeTab];
+    const currentPage = currentPages[activeTab] || 1;
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return data.slice(startIndex, endIndex);
   };
 
-  const totalPages = (data) => Math.ceil(data.length / itemsPerPage);
+  const totalPages = (data) => Math.max(1, Math.ceil(data.length / itemsPerPage));
 
   const renderPagination = (data) => {
     const totalPageCount = totalPages(data);
-    const currentPage = currentPages[activeTab];
-    const pageNumbers = [];
+    const currentPage = currentPages[activeTab] || 1;
 
-    if (totalPageCount <= 5) {
-      for (let i = 1; i <= totalPageCount; i++) {
-        pageNumbers.push(i);
-      }
-    } else {
-      pageNumbers.push(1);
-      let startPage = Math.max(2, currentPage - 1);
-      let endPage = Math.min(totalPageCount - 1, currentPage + 1);
-
-      for (let i = startPage; i <= endPage; i++) {
-        pageNumbers.push(i);
-      }
-
-      if (currentPage < totalPageCount - 2) {
-        pageNumbers.push("...");
-      }
-
-      pageNumbers.push(totalPageCount);
-    }
+    if (totalPageCount === 0) return null;
 
     return (
-      <div className="pagination">
+      <div className="pagination-container">
         <button
-          disabled={currentPage === 1}
+          className={`pagination-btn ${currentPage === 1 ? "disabled" : ""}`}
           onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
         >
           &lt;
         </button>
 
-        {pageNumbers.map((page, index) =>
-          typeof page === "number" ? (
-            <button
-              key={index}
-              className={currentPage === page ? "active" : ""}
-              onClick={() => handlePageChange(page)}
-            >
-              {page}
-            </button>
-          ) : (
-            <span key={index} className="pagination-ellipsis">
-              ...
-            </span>
-          )
-        )}
+        <span className="pagination-info">
+          {currentPage} of {totalPageCount}
+        </span>
 
         <button
-          disabled={currentPage === totalPageCount}
+          className={`pagination-btn ${currentPage === totalPageCount ? "disabled" : ""}`}
           onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPageCount}
         >
           &gt;
         </button>
@@ -165,92 +142,35 @@ const InsightsSection = () => {
     setSearchQuery(e.target.value.toLowerCase());
     setCurrentPages((prevPages) => ({
       ...prevPages,
-      [activeTab]: 1, // Reset to the first page
+      [activeTab]: 1, // Reset to first page on search
     }));
   };
 
   const renderContent = () => {
     const data = papersData[activeTab] || [];
-
-    // Filter results based on the search term
     const filteredData = data.filter(
       (item) =>
         item.Title.toLowerCase().includes(searchQuery) ||
         item.Authors.toLowerCase().includes(searchQuery) ||
         (item.Journal && item.Journal.toLowerCase().includes(searchQuery)) ||
-        (item.PublishingYear &&
-          item.PublishingYear.toString().includes(searchQuery))
+        (item.PublishingYear && item.PublishingYear.toString().includes(searchQuery))
     );
 
     return (
       <>
         {getPaginatedData(filteredData).map((item, index) => (
           <div key={index} className="insight-item">
-            {/* Publications Format */}
-            {activeTab === "Publications" && (
-              <>
-                <p className="insight-author">{item.Authors}</p>
-                <p className="insight-title">
-                  {item.PaperLink ? (
-                    <a
-                      href={item.PaperLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.Title}
-                    </a>
-                  ) : (
-                    item.Title
-                  )}
-                </p>
-                <p className="insight-journal">
-                  {item.Journal}, {getPublishDate(item.PublishingYear)}
-                </p>
-              </>
-            )}
-
-            {/* Working Papers Format (With Links) */}
-            {activeTab === "Working Papers" && (
-              <>
-                <p className="insight-author">{item.Authors}</p>
-                <p className="insight-title">
-                  {item.PaperLink ? (
-                    <a
-                      href={item.PaperLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.Title}
-                    </a>
-                  ) : (
-                    item.Title
-                  )}
-                </p>
-                <p className="insight-journal">{getPublishDate(item.PublishingYear)}</p>
-              </>
-            )}
-
-            {/* Talks Format (With Links) */}
-            {activeTab === "Talks" && (
-              <>
-                <p className="insight-titleTalks">
-                  {item.PaperLink ? (
-                    <a
-                      href={item.PaperLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.Title}
-                    </a>
-                  ) : (
-                    item.Title
-                  )}
-                </p>
-                <p className="insight-journal">
-                  {item.Journal}, {getPublishDate(item.PublishingYear)}
-                </p>
-              </>
-            )}
+            <p className="insight-author">{item.Authors}</p>
+            <p className="insight-title">
+              {item.PaperLink ? (
+                <a href={item.PaperLink} target="_blank" rel="noopener noreferrer">
+                  {item.Title}
+                </a>
+              ) : (
+                item.Title
+              )}
+            </p>
+            <p className="insight-journal">{getPublishDate(item.PublishingYear)}</p>
           </div>
         ))}
         {renderPagination(filteredData)}
@@ -282,7 +202,7 @@ const InsightsSection = () => {
             <div className="search-container">
               <Search size={20} className="search-icon" />
               <input
-                className="search placeholder-[#04486F]"
+                className="search"
                 placeholder="Search"
                 type="text"
                 onChange={searchPaper}

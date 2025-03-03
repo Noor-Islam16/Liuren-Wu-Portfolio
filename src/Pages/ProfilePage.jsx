@@ -21,9 +21,9 @@ const ProfilePage = () => {
       regular: "",
     },
     articleCount: "50+",
-    tabs: ["About", "Publications", "Classes",  "Contact"],
+    tabs: ["About", "Publications", "Classes", "Contact"],
     profileImage: "",
-    resume: "", // Added resume field
+    resume: "",
   });
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const ProfilePage = () => {
         if (snapshot.exists()) {
           const data = snapshot.val();
           const split = splitString(data.designation);
-          document.title = data.firstName + " " + data.lastName + " | Academic Blog";
+          document.title = data.firstName + " " + data.lastName;
           setProfileData((prevData) => ({
             ...prevData,
             name: `${data.firstName} ${data.lastName}`,
@@ -46,7 +46,7 @@ const ProfilePage = () => {
               regular: split.secondPart,
             },
             profileImage: import.meta.env.VITE_API + "images/" + data.logo,
-            resume: data.resume || "", // Store resume URL
+            resume: data.resume || "",
           }));
         }
       })
@@ -77,17 +77,18 @@ const ProfilePage = () => {
       <div className="profile-content">
         <div className="left-nav">
           <div className="nav-links">
-            {profileData.tabs.map((tab, index) => (
+            {profileData.tabs.map((tab) => (
               <React.Fragment key={tab}>
                 <button
-                  className={`nav-link ${tab.toLowerCase() === "contact" ? "contact-button" : ""
-                    } ${activeTab === tab.toLowerCase() ? "active" : ""}`}
+                  // className={`nav-link ${
+                  //   activeTab === tab.toLowerCase() ? "active" : ""
+                  // }`}
+                  className="nav-link"
                   onClick={() => handleTabClick(tab)}
                 >
                   {tab}
                 </button>
 
-                {/* Insert CV button after "Classes" */}
                 {tab.toLowerCase() === "classes" && profileData.resume && (
                   <button
                     className="nav-link"
@@ -100,8 +101,7 @@ const ProfilePage = () => {
             ))}
           </div>
           <div className="profile-info">
-            <h1 className="profile-name">{profileData.name || "Loading..."}</h1>{" "}
-            {/* Dynamic Name */}
+            <h1 className="profile-name">{profileData.name}</h1>
             <p className="profile-title">
               <span className="highlighted-title">
                 {profileData.title.highlighted}
