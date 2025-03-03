@@ -82,7 +82,7 @@ body {
     height: 100%;
     background: linear-gradient(450deg, #00525E, #076573, #0F7989);
     z-index: -1;
-    transition: transform 0.4s ease-in-out;
+    /* transition: transform 0.4s ease-in-out; */
     transform: scaleX(0);
     transform-origin: left;
     border-radius: 5px;
@@ -96,7 +96,7 @@ body {
 .nav-link:hover,
 .nav-link.active {
     color: white;
-    transition: color 0.3s ease-in-out;
+    /* transition: color 0.3s ease-in-out; */
 }
 
 /* Contact Button */
